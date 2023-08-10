@@ -1,7 +1,7 @@
 #makefile to work with dockerfile
 
 #vars
-USERNAME = default
+USERNAME = devdastl
 PROJECT = emlop
 TAG = assignment9-v1
 
@@ -22,6 +22,13 @@ build-vit:
 
 build-images: build-gpt build-vit
 	@echo "building both docker images for GPT and VIT service"
+
+pull-images:
+	@echo "pulling GPT service image"
+	docker pull ${USERNAME}/${PROJECT}:${TAG}-gpt
+
+	@echo "pulling VIT service image"
+	docker pull ${USERNAME}/${PROJECT}:${TAG}-vit
 
 run-gpt-service:
 	docker run -it -p 8080:8080 ${USERNAME}/${PROJECT}:${TAG}-gpt
